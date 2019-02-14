@@ -4,19 +4,19 @@ import javax.jms.Queue;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.core.JmsTemplate;
  
 @Configuration
-@ComponentScan
 
 public class Config {
 	
-	@Value("${activemq.broker-url}")
-	private String brokerURL;
+	public String brokerURL="tcp://localhost:61616";
+	
+	public String user="admin";
+	
+	public String pass="admin";
 	
 	@Bean
 	public Queue queue() {
@@ -26,7 +26,9 @@ public class Config {
 	@Bean
 	public ActiveMQConnectionFactory activeMQConnectionFactory() {
 		ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory();
-		factory.getBrokerURL();
+		factory.setBrokerURL(brokerURL);
+		factory.setUserName(user);
+		factory.setPassword(pass);
 		return factory;
 	}
 	

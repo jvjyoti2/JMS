@@ -1,5 +1,4 @@
 package com.example.demoSpringBoot.MyJMSj.listener;
-/*package com.example.demoSpringBoot.listener;
 
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
@@ -13,4 +12,3 @@ public class Consumer {
 	}
 
 }
-*/

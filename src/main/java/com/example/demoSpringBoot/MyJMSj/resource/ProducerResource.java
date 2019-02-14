@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProducerResource {
     @Autowired
     JmsTemplate JmsTemplate;
-
+ 
     @Autowired
     Queue queue;
 

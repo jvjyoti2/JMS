@@ -10,5 +10,5 @@ public class Consumer {
 	public void listener(String message) {
 		System.out.println("Recieved Message: "+message);
 	}
-
+ 
 }

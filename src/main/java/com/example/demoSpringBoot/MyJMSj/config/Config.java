@@ -4,6 +4,7 @@ import javax.jms.Queue;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.core.JmsTemplate;
@@ -11,12 +12,12 @@ import org.springframework.jms.core.JmsTemplate;
 @Configuration
 
 public class Config {
-	
-	public String brokerURL="tcp://localhost:61616";
-	
-	public String user="admin";
-	
-	public String pass="admin";
+	@Value("${spring.activemq.broker-url}")
+	private String brokerURL;
+	@Value("${spring.activemq.user}")
+	private String user;
+	@Value("${spring.activemq.password}")
+	private String pass;
 	
 	@Bean
 	public Queue queue() {

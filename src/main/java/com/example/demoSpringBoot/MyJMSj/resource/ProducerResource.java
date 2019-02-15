@@ -1,5 +1,8 @@
 package com.example.demoSpringBoot.MyJMSj.resource;
 
+import java.util.Base64;
+
+import javax.jms.BytesMessage;
 import javax.jms.Queue;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/rest/publish")
 public class ProducerResource {
-    @Autowired
-    JmsTemplate JmsTemplate;
- 
-    @Autowired
-    Queue queue;
+	@Autowired
+	JmsTemplate JmsTemplate;
 
-    @GetMapping("/{message}")
-    public String publish(@PathVariable("message") final String message) {
-        JmsTemplate.convertAndSend(queue, message);
-        return "Published Successfully";
-    }
+	@Autowired
+	Queue queue;
+
+	public static String originalMsg;
+
+	@GetMapping("/{message}")
+	public String publish(@PathVariable("message") final String message) {
+		originalMsg = message;
+		String encodedmsg = Base64.getEncoder().encodeToString(message.getBytes());
+		JmsTemplate.convertAndSend(queue, encodedmsg);
+		return "Published Successfully";
+	}
 }
